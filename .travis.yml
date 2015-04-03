@@ -1,0 +1,10 @@
+language: python
+python:
+    - "3.3"
+install:
+    - sh install.sh
+    - cd temp/js/js/src
+    - ./configure --prefix=../../../build
+    - make
+script:
+    - python setup.py test
