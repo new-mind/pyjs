@@ -8,12 +8,16 @@ jobs=$(($jobs+1))
 function download {
     mkdir -p $TEMP
     cd $TEMP
-    wget -N $URL -o mozjs.tar.bz2
+    set -x
+    wget -N $URL -O mozjs.tar.bz2 --verbose
+    set +x
 }
 
 function build {
-    tar -xjvf mozjs.tar.bs2 -C $1 --strip-components=1 && cd $1
-    ./configure && make -j$jobs
+    mkdir -p $1
+    set -x
+    tar -xvf mozjs.tar.bz2 -C $1 --strip-components=1 && cd ..
+    set +x
 }
 
 for i in $@; do
