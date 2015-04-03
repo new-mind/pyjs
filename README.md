@@ -18,19 +18,19 @@ rt.execute('var a = 1')
 ##Pyjs
 
 * python setup.py build/install
-* Available environment variables:
-  INCLUDE_MOZJS - include dir
-  LIBRARY_MOZJS - library dir
+* Available environment variables:  
+  INCLUDE_MOZJS - include dir  
+  LIBRARY_MOZJS - library dir  
 
 ##Mozjs
 
 For compiling mozjs needed python > 3
 
-* ./install.sh
-* cd temp/js/js/src/
-* ./compile --prefix=../../../build
-* make
+* `./install.sh`
+* `cd temp/js/js/src/`
+* `./compile --prefix=../../../build`
+* `make`
 
 ##Testing
 
-* python setup.py test
+* `python setup.py test`
