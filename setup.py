@@ -6,4 +6,6 @@ setup(name='pyjs',
       version='0.0.1',
       autho='jiojiajiu',
       email='jiojiajiu@gmail.com',
-      ext_modules=[ext,])
+      ext_modules=[ext,],
+      test_suite="tests",
+      )
