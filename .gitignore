@@ -1,3 +1,5 @@
 *.sw?
 pyjs.egg-info/**
 *.pyc
+temp/**
+pyjs.so
