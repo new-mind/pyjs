@@ -1,18 +1,20 @@
 import os
+from os import path
 from setuptools import setup, Extension
 
-MOZJS = 'src/js/js/src'
-INCLUDE_DIRS = os.environ.get('INCLUDE_MOZJS', MOZJS)
-LIBRARY_DIRS = os.environ.get('LIBRARY_MOZJS', MOZJS)
+os.environ['CC'] = 'g++'
+
+MOZJS = 'temp/mozjs-31.2.0/js/src/dist'
+INCLUDE_DIRS = [path.join(MOZJS, 'include'),]
 
 ext = Extension('pyjs', sources=['src/Runtime.cpp'],
-                        include_dirs=[INCLUDE_DIRS,],
-                        library_dirs=[LIBRARY_DIRS,],)
+                        language='c++',
+                        include_dirs=INCLUDE_DIRS,
+                        extra_compile_args=['-std=c++11'])
 
 setup(name='pyjs',
       version='0.0.1',
-      autho='jiojiajiu',
-      email='jiojiajiu@gmail.com',
+      author='jiojiajiu',
       ext_modules=[ext,],
       test_suite="tests",
       )

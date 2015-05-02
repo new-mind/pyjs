@@ -1,4 +1,5 @@
 #include <Python.h>
+#include <jsapi.h>
 
 PyObject *
 pyjs_runtime(PyObject *self, PyObject *args)
