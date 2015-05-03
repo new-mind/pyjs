@@ -5,7 +5,8 @@
 PyObject *
 PyJS_Runtime_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 {
-    PyJS_Runtime* self;
+    PyJS_Runtime* self = reinterpret_cast<PyJS_Runtime *>(type->tp_alloc(type, 0));
+
     // TODO: allocated space should point trough configuration
     JSRuntime *rt = JS_NewRuntime(16L * 1024 * 1024, JS_USE_HELPER_THREADS);
     if (!rt) {
@@ -18,13 +19,21 @@ PyJS_Runtime_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
     return (PyObject *)self;
 }
 
+int PyJS_Runtime_init(PyJS_Runtime *self, PyObject *args, PyObject *kwds)
+{
+}
+
+void PyJS_Runtime_free(PyJS_Runtime *self)
+{
+}
+
 PyTypeObject PyJS_RuntimeType {
     PyObject_HEAD_INIT(nullptr)
     0,
     "pyjs.Runtime",
     sizeof(PyJS_Runtime), 0,
     
-    0, //destructor
+    (destructor)PyJS_Runtime_free, //destructor
     0,
     0,
     0,
@@ -66,7 +75,7 @@ PyTypeObject PyJS_RuntimeType {
     0,
     0,
     0,
-    0, // init
+    (initproc)PyJS_Runtime_init, // init
     0, // alloc
-    PyJS_Runtime_new, // new
+    (newfunc)PyJS_Runtime_new, // new
 };
