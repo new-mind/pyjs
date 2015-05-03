@@ -25,7 +25,7 @@ rt.execute('var a = 1')
 For compiling mozjs needed 2.7.3 < python < 3
 
 * `./install.sh --download`
-* `PYTHON=pythonExc ./install.sh --build`
+* `PYTHON=pythonExc ./install.sh --build`  
    `pythonExc` - name of python executable
 
 ##Testing

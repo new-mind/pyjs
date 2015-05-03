@@ -1,6 +1,6 @@
 language: python
 python:
-    - "2.7.3"
+    - "2.7"
 install:
     - sh install.sh --download
     - sh install.sh --build
