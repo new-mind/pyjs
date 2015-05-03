@@ -4,7 +4,7 @@ from setuptools import setup, Extension
 
 os.environ['CC'] = 'g++'
 
-MOZJS = 'temp/mozjs-31.2.0/js/src/dist'
+MOZJS = 'temp/js/js/src/dist'
 INCLUDE_DIRS = [path.join(MOZJS, 'include'),]
 LIB_DIRS = [path.join(MOZJS, 'lib'),]
 

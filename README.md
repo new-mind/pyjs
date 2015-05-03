@@ -22,12 +22,10 @@ rt.execute('var a = 1')
 
 ##Mozjs
 
-For compiling mozjs needed python > 3
+For compiling mozjs needed 2.7.3 < python < 3
 
-* `./install.sh`
-* `cd temp/js/js/src/`
-* `./compile`
-* `make`
+* `./install.sh --download`
+* `./install.sh --build`
 
 ##Testing
 

@@ -1,10 +1,9 @@
 language: python
 python:
+    - "2.7.3"
     - "3.3"
 install:
-    - sh install.sh
-    - cd temp/js/js/src
-    - ./configure
-    - make
+    - sh install.sh --download
+    - sh install.sh --build
 script:
     - python setup.py test
