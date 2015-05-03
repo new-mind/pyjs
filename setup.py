@@ -2,7 +2,7 @@ import os
 from os import path
 from setuptools import setup, Extension
 
-os.environ['CC'] = 'g++'
+os.environ['CC'] = 'c++'
 
 MOZJS = 'temp/js/js/src/dist'
 INCLUDE_DIRS = [path.join(MOZJS, 'include'),]
@@ -13,7 +13,7 @@ ext = Extension('pyjs', sources=['src/main.cpp', 'src/Runtime.cpp'],
                         include_dirs=INCLUDE_DIRS,
                         library_dirs=LIB_DIRS,
                         libraries=['mozjs-31',],
-                        extra_compile_args=['-std=c11'])
+                        extra_compile_args=['-std=gnu++0x'])
 
 setup(name='pyjs',
       version='0.0.1',
