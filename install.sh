@@ -19,7 +19,7 @@ function extract {
 
 function build {
     cd $TEMP/js/js/src/
-    PYTHON=python2.7.5 ./configure
+    ./configure
 
     jobs=`cat /proc/cpuinfo | grep 'processor' | wc | awk '{print $1}'`
     jobs=$(($jobs+1))
