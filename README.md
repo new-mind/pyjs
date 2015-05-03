@@ -31,3 +31,7 @@ For compiling mozjs needed 2.7.3 < python < 3
 ##Testing
 
 * `python setup.py test`
+
+##Thanks
+
+* Paul J. Davis (python-spidermonkey)
