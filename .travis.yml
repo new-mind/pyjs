@@ -4,7 +4,7 @@ python:
 install:
     - sh install.sh
     - cd temp/js/js/src
-    - ./configure --prefix=../../../build
+    - ./configure
     - make
 script:
     - python setup.py test
