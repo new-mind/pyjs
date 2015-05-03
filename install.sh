@@ -1,7 +1,6 @@
 URL=https://people.mozilla.org/~sstangl/mozjs-31.2.0.rc0.tar.bz2
 TEMP=temp
 CWD=`pwd`
-set -v
 
 function download {
     mkdir -p $TEMP
