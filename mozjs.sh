@@ -2,18 +2,18 @@ URL=https://people.mozilla.org/~sstangl/mozjs-31.2.0.rc0.tar.bz2
 TEMP=temp
 CWD=`pwd`
 
-function download {
+function download () {
     mkdir -p $TEMP
     cd $TEMP
     wget -N $URL -O mozjs.tar.bz2 --verbose
 }
 
-function extract {
+function extract () {
     mkdir -p $1
     tar -xvf mozjs.tar.bz2 -C $1 --strip-components=1 && cd ..
 }
 
-function build {
+function build () {
     cd $TEMP/js/js/src/
     ./configure
 
@@ -23,8 +23,18 @@ function build {
     cd $CWD
 }
 
+function install () {
+    cd $TEMP/js/js/src
+    make install
+    cd $CWD
+}
+
 for i in $@; do
     case $i in
+        --install)
+            install
+            exit 0
+            ;;
         --build)
             build
             exit 0

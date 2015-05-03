@@ -1,8 +1,9 @@
 language: python
 python:
     - "2.7"
-install:
-    - bash install.sh --download
-    - bash install.sh --build
+before_install:
+    - bash mozjs.sh --download
+    - bash mozjs.sh --build
+    - bash mozjs.sh --install
 script:
     - python setup.py test
