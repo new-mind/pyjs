@@ -5,10 +5,15 @@
 #include <jsapi.h>
 #include "structmember.h"
 
-typedef struct {
+class PyJS_Runtime
+{
     PyObject_HEAD
     JSRuntime *rt;
-} PyJS_Runtime;
+
+    public:
+        PyJS_Runtime();
+        ~PyJS_Runtime();
+};
 
 extern PyTypeObject PyJS_RuntimeType;
 #endif

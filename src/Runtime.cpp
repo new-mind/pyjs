@@ -2,30 +2,26 @@
 #include <jsapi.h>
 #include "Runtime.h"
 
-PyObject *
-PyJS_Runtime_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
+PyJS_Runtime::PyJS_Runtime()
 {
-    PyJS_Runtime* self = reinterpret_cast<PyJS_Runtime *>(type->tp_alloc(type, 0));
-
-    // TODO: allocated space should point trough configuration
     JSRuntime *rt = JS_NewRuntime(16L * 1024 * 1024, JS_USE_HELPER_THREADS);
     if (!rt) {
         PyErr_SetString(PyExc_RuntimeError, "Cannot create javascript runtime");
-        return nullptr;
-    };
+    }
 
-    self->rt = rt;
-
-    return (PyObject *)self;
+    this->rt = rt;
 }
 
-int PyJS_Runtime_init(PyJS_Runtime *self, PyObject *args, PyObject *kwds)
+PyJS_Runtime::~PyJS_Runtime()
 {
+    Py_XDECREF(this->rt);
+    this->ob_type->tp_free((PyObject *)this);
+    JS_DestroyRuntime(this->rt);
 }
 
-void PyJS_Runtime_free(PyJS_Runtime *self)
-{
-}
+static PyMethodDef methods[] = {
+    {}
+};
 
 PyTypeObject PyJS_RuntimeType {
     PyObject_HEAD_INIT(nullptr)
@@ -33,7 +29,9 @@ PyTypeObject PyJS_RuntimeType {
     "pyjs.Runtime",
     sizeof(PyJS_Runtime), 0,
     
-    (destructor)PyJS_Runtime_free, //destructor
+    (destructor)(*[](PyJS_Runtime *self) -> void {
+        delete self;
+    }),
     0,
     0,
     0,
@@ -67,6 +65,7 @@ PyTypeObject PyJS_RuntimeType {
     0,
     0,
 
+    methods,
     0,
     0,
     0,
@@ -74,8 +73,11 @@ PyTypeObject PyJS_RuntimeType {
     0,
     0,
     0,
-    0,
-    (initproc)PyJS_Runtime_init, // init
+    (initproc)(*[](PyJS_Runtime *self, PyObject *args, PyObject *kwds) -> int {
+        return 0;
+    }),
     0, // alloc
-    (newfunc)PyJS_Runtime_new, // new
+    (newfunc)(*[](PyTypeObject *type, PyObject *args, PyObject *kwds) -> PyObject* {
+        return (PyObject *)new PyJS_Runtime();
+    })
 };
