@@ -1,6 +1,7 @@
 URL=https://people.mozilla.org/~sstangl/mozjs-31.2.0.rc0.tar.bz2
 TEMP=temp
 CWD=`pwd`
+INSTALL_PATH=$CWD/$TEMP/build
 
 function download () {
     mkdir -p $TEMP
@@ -15,7 +16,7 @@ function extract () {
 
 function build () {
     cd $TEMP/js/js/src/
-    ./configure
+    ./configure --prefix=$INSTALL_PATH
 
     jobs=`cat /proc/cpuinfo | grep 'processor' | wc | awk '{print $1}'`
     jobs=$(($jobs+1))

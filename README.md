@@ -20,13 +20,19 @@ cx.eval('var a = 1')
 
 * python setup.py build/install
 
-##Mozjs
+##Mozjs (installing)
 
 For compiling mozjs needed 2.7.3 < python < 3
 
 * `./install.sh --download`
 * `PYTHON=pythonExc ./install.sh --build`  
    `pythonExc` - name of python executable
+* `./install.sh --install`
+
+##Mozjs (local)
+
+* `MOZJS_INCLUDE_DIRS` - path to jsapi headers
+* `MOZJS_LIB_DIRS` - path to libmozjs-31
 
 ##Testing
 

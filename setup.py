@@ -4,10 +4,18 @@ from os import path
 from setuptools import setup, Extension
 
 os.environ['CC'] = 'c++'
+def parse_path_environ(key):
+    env = os.environ.get(key)
+    if not env:
+        return None
+    return env.split(':')
 
-MOZJS = 'temp/file/mozjs-31.2.0/js/src/build_my/dist'
-INCLUDE_DIRS = [path.join(MOZJS, 'include')]
-LIB_DIRS = [path.join(MOZJS, 'lib'),]
+MOZJS_INCLUDE_DIRS = parse_path_environ('MOZJS_INCLUDE_DIRS')
+MOZJS_LIB_DIRS = parse_path_environ('MOZJS_LIB_DIRS')
+
+MOZJS = 'temp/build/dist'
+INCLUDE_DIRS = MOZJS_INCLUDE_DIRS or [path.join(MOZJS, 'include')]
+LIB_DIRS = MOZJS_LIB_DIRS or [path.join(MOZJS, 'lib'),]
 
 ext = Extension('pyjs', sources=['src/main.cpp', 'src/Runtime.cpp', 'src/Context.cpp', 'src/utils/convert.cpp'],
                         language='c++',
