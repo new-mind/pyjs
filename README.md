@@ -10,8 +10,8 @@ mozjs-31.2.0
 import pyjs
 
 rt = pyjs.Runtime()
-context = rt.Context()
-rt.execute('var a = 1')
+cx = rt.Context()
+cx.eval('var a = 1')
 ```
 
 #Installing

@@ -1,26 +1,40 @@
-#include <Python.h>
 #include <jsapi.h>
+#include <Python.h>
+
+#include "Context.h"
 #include "Runtime.h"
 
-PyJS_Runtime::PyJS_Runtime()
+PyJS_Runtime *
+PyJS_Runtime_new()
 {
-    JSRuntime *rt = JS_NewRuntime(16L * 1024 * 1024, JS_USE_HELPER_THREADS);
+    PyJS_Runtime *self = (PyJS_Runtime *)PyJS_RuntimeType.tp_alloc(&PyJS_RuntimeType, 0);
+
+    JS_Init();
+    JSRuntime *rt = JS_NewRuntime(1024 * 8 * 1024, JS_NO_HELPER_THREADS);
     if (!rt) {
         PyErr_SetString(PyExc_RuntimeError, "Cannot create javascript runtime");
+        PyJS_RuntimeType.tp_free((PyObject *)self);
+        return nullptr;
     }
+    self->rt = rt;
 
-    this->rt = rt;
+    return self;
 }
 
-PyJS_Runtime::~PyJS_Runtime()
+void
+PyJS_Runtime_free(PyJS_Runtime *self)
 {
-    Py_XDECREF(this->rt);
-    this->ob_type->tp_free((PyObject *)this);
-    JS_DestroyRuntime(this->rt);
+    JS_DestroyRuntime(self->rt);
+    PyJS_RuntimeType.tp_free((PyObject *)self);
 }
+
+// Python.h definitions
 
 static PyMethodDef methods[] = {
-    {}
+    {"Context", (PyCFunction)(*[](PyJS_Runtime *rt) -> PyObject * {
+        return PyObject_CallObject((PyObject *)&PyJS_ContextType, Py_BuildValue("(O)", rt)); 
+    }), METH_NOARGS, "Create context"},
+    {nullptr}
 };
 
 PyTypeObject PyJS_RuntimeType {
@@ -29,9 +43,7 @@ PyTypeObject PyJS_RuntimeType {
     "pyjs.Runtime",
     sizeof(PyJS_Runtime), 0,
     
-    (destructor)(*[](PyJS_Runtime *self) -> void {
-        delete self;
-    }),
+    (destructor)(PyJS_Runtime_free),
     0,
     0,
     0,
@@ -76,8 +88,8 @@ PyTypeObject PyJS_RuntimeType {
     (initproc)(*[](PyJS_Runtime *self, PyObject *args, PyObject *kwds) -> int {
         return 0;
     }),
-    0, // alloc
-    (newfunc)(*[](PyTypeObject *type, PyObject *args, PyObject *kwds) -> PyObject* {
-        return (PyObject *)new PyJS_Runtime();
+    0,
+    (newfunc)([](PyTypeObject *type, PyObject *args, PyObject *kwds) -> PyObject* {
+        return (PyObject *)PyJS_Runtime_new();
     })
 };
