@@ -5,17 +5,20 @@ CWD=`pwd`
 INSTALL_PATH=$CWD/$TEMP/build
 
 function download () {
+    echo ">> Download"
     mkdir -p $TEMP
     cd $TEMP
     wget -N $URL -O mozjs.tar.bz2 --verbose
 }
 
 function extract () {
+    echo ">> Extract"
     mkdir -p $1
-    tar -xvf mozjs.tar.bz2 -C $1 --strip-components=1 && cd ..
+    tar -xf mozjs.tar.bz2 -C $1 --strip-components=1 && cd ..
 }
 
 function build () {
+    echo ">> Configure"
     cd $TEMP/js/js/src/
     ./configure --prefix=$INSTALL_PATH
 
@@ -24,11 +27,13 @@ function build () {
     #jobs=`cat /proc/cpuinfo | grep 'processor' | wc | awk '{print $1}'`
     #jobs=$(($jobs+1))
     #make -j$jobs
+    echo ">> Make"
     make -j1
     cd $CWD
 }
 
 function install () {
+    echo ">> Install"
     cd $TEMP/js/js/src
     make install
     cp -v dist/include/js-config.h $INSTALL_PATH/include/mozjs-31/
