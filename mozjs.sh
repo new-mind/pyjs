@@ -18,9 +18,13 @@ function build () {
     cd $TEMP/js/js/src/
     ./configure --prefix=$INSTALL_PATH
 
-    jobs=`cat /proc/cpuinfo | grep 'processor' | wc | awk '{print $1}'`
-    jobs=$(($jobs+1))
-    make -j$jobs
+    # related issues
+    # https://bugzilla.mozilla.org/show_bug.cgi?id=1006275
+    #jobs=`cat /proc/cpuinfo | grep 'processor' | wc | awk '{print $1}'`
+    #jobs=$(($jobs+1))
+    #make -j$jobs
+    make -j1
+    cp dist/include/js-config.h $INSTALL_PATH/include/mozjs-31/
     cd $CWD
 }
 

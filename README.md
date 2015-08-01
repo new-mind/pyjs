@@ -16,6 +16,8 @@ cx.eval('var a = 1')
 
 #Installing
 
+Support yet only static linking
+
 ##Pyjs
 
 * python setup.py build/install
