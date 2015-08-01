@@ -35,7 +35,7 @@ ext = Extension('pyjs', sources=find_sources(),
                         library_dirs=LIB_DIRS,
                         libraries=['z', 'm', 'dl'],
                         extra_objects=[path.join(MOZJS, 'lib/libmozjs-31.a')],
-                        extra_compile_args=['-std=gnu++0x', '-w'])
+                        extra_compile_args=['-std=gnu++0x',])
 
 setup(name='pyjs',
       version='1.0.0dev1',
