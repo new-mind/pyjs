@@ -35,11 +35,24 @@ ext = Extension('pyjs', sources=find_sources(),
                         library_dirs=LIB_DIRS,
                         libraries=['z', 'm', 'dl'],
                         extra_objects=[path.join(MOZJS, 'lib/libmozjs-31.a')],
-                        extra_compile_args=['-std=c++11', '-w'])
+                        extra_compile_args=['-std=c11', '-w'])
 
 setup(name='pyjs',
-      version='0.0.1',
+      version='1.0.0dev1',
+      description='Python-javascript bridge',
+      url="https://github.com/new-mind/pyjs",
       author='jiojiajiu',
+      author_email='jiojiajiu@gmail.com',
+      license='MIT',
       ext_modules=[ext,],
       test_suite="tests",
-      )
+      classifiers=[
+        'Development Status :: 3 - Alpha',
+        'Intended Audience :: Developers',
+        'Topic :: Software Development :: Build Tools',
+        'License :: OSI Approved :: MIT License',
+        'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 2.6',
+        'Programming Language :: Python :: 2.7'
+      ],
+      keywords='javascript development spidermonkey')
