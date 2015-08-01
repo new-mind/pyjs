@@ -1,3 +1,4 @@
+# Script for download, building and installing mozjs
 URL=https://people.mozilla.org/~sstangl/mozjs-31.2.0.rc0.tar.bz2
 TEMP=temp
 CWD=`pwd`

@@ -26,10 +26,10 @@ Support yet only static linking
 
 For compiling mozjs needed 2.7.3 < python < 3
 
-* `./install.sh --download`
-* `PYTHON=pythonExc ./install.sh --build`  
+* `./setup.sh --download`
+* `PYTHON=pythonExc ./setup.sh --build`  
    `pythonExc` - name of python executable
-* `./install.sh --install`
+* `./setup.sh --install`
 
 ##Mozjs (local)
 
