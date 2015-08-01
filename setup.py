@@ -4,7 +4,7 @@ from os import path
 from setuptools import setup, Extension
 
 #TODO:
-os.environ['CC'] = 'c++'
+os.environ['CC'] = 'clang'
 
 def parse_path_environ(key):
     env = os.environ.get(key)
