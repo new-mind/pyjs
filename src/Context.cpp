@@ -45,7 +45,7 @@ static PyMethodDef methods[] = {
 PyTypeObject PyJS_ContextType {
     PyObject_HEAD_INIT(nullptr)
     0,
-    "pyjs.Runtime.Context",
+    "py_js.Runtime.Context",
     sizeof(PyJS_Context), 0,
     
     (destructor)(*[](PyJS_Context *self) -> void {

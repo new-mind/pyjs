@@ -20,7 +20,7 @@ INCLUDE_DIRS = MOZJS_INCLUDE_DIRS or [path.join(MOZJS, 'include/mozjs-31/')]
 LIB_DIRS = MOZJS_LIB_DIRS or [path.join(MOZJS, 'lib'),]
 
 def find_sources():
-    return ['src/main.cpp', 'src/Runtime.cpp', 'src/Context.cpp', 'src/utils/convert.cpp']
+    #return ['src/main.cpp', 'src/Runtime.cpp', 'src/Context.cpp', 'src/utils/convert.cpp']
     return [
         os.path.join(d, f)
             for (d, dpath, files) in os.walk('src')
@@ -29,7 +29,7 @@ def find_sources():
 
 #TODO:
 # extra_compile_args through ./js-config --extraflags
-ext = Extension('pyjs', sources=find_sources(),
+ext = Extension('py_js', sources=find_sources(),
                         language='c++',
                         include_dirs=INCLUDE_DIRS,
                         library_dirs=LIB_DIRS,
@@ -37,8 +37,8 @@ ext = Extension('pyjs', sources=find_sources(),
                         extra_objects=[path.join(MOZJS, 'lib/libmozjs-31.a')],
                         extra_compile_args=['-std=gnu++0x',])
 
-setup(name='pyjs',
-      version='1.0.0dev1',
+setup(name='py_js',
+      version='1.0.0.dev1',
       description='Python-javascript bridge',
       url="https://github.com/new-mind/pyjs",
       author='jiojiajiu',

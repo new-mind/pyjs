@@ -40,7 +40,7 @@ static PyMethodDef methods[] = {
 PyTypeObject PyJS_RuntimeType {
     PyObject_HEAD_INIT(nullptr)
     0,
-    "pyjs.Runtime",
+    "py_js.Runtime",
     sizeof(PyJS_Runtime), 0,
     
     (destructor)(PyJS_Runtime_free),

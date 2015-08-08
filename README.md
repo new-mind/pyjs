@@ -1,5 +1,6 @@
 #[![Build Status](https://travis-ci.org/new-mind/pyjs.svg)](https://travis-ci.org/new-mind/pyjs) NOT READY YET!
 Python bridge for javascript on base SpiderMonkey
+!Support yet only static linking
 
 
 mozjs-31.2.0
@@ -7,7 +8,7 @@ mozjs-31.2.0
 #Usage
 
 ```python
-import pyjs
+import py_js as pyjs
 
 rt = pyjs.Runtime()
 cx = rt.Context()
@@ -15,8 +16,6 @@ cx.eval('var a = 1')
 ```
 
 #Installing
-
-Support yet only static linking
 
 ##Pyjs
 

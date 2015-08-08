@@ -9,9 +9,9 @@ static PyMethodDef methods[] = {
 };
 
 PyMODINIT_FUNC
-initpyjs(void)
+initpy_js(void)
 {
-    PyObject *mod = Py_InitModule("pyjs", methods);
+    PyObject *mod = Py_InitModule("py_js", methods);
 
     if (PyType_Ready(&PyJS_RuntimeType) < 0)
         return;

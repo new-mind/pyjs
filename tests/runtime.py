@@ -1,5 +1,5 @@
 import unittest
-import pyjs
+import py_js as pyjs
 
 class TestCase(unittest.TestCase):
     def test_get_runtime(self):
