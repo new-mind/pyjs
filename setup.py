@@ -2,6 +2,8 @@
 import os
 from os import path
 from setuptools import setup, Extension
+from setuptools.command.install import install
+import subprocess
 
 #TODO:
 os.environ['CC'] = 'clang'
@@ -37,7 +39,15 @@ ext = Extension('py_js', sources=find_sources(),
                         extra_objects=[path.join(MOZJS, 'lib/libmozjs-31.a')],
                         extra_compile_args=['-std=gnu++0x',])
 
+class CustomInstall(install):
+    def run(self):
+        subprocess.call(['bash', 'setup.sh', '--download'])
+        subprocess.call(['bash', 'setup.sh', '--build'])
+        subprocess.call(['bash', 'setup.sh', '--install'])
+        install.run(self)
+
 setup(name='py_js',
+      cmdclass={'install': CustomInstall},
       version='1.0.0.dev1',
       description='Python-javascript bridge',
       url="https://github.com/new-mind/pyjs",
