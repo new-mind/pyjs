@@ -1,2 +1,2 @@
 include setup.sh
-include README.rst
+include README.md
