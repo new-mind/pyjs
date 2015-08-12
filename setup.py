@@ -3,6 +3,8 @@ import os
 from os import path
 from setuptools import setup, Extension
 from setuptools.command.install import install
+from setuptools.command.develop import develop
+from setuptools.command.test import test
 import subprocess
 
 #TODO:
@@ -38,15 +40,35 @@ ext = Extension('py-js', sources=find_sources(),
                         extra_objects=[path.join(MOZJS, 'lib/libmozjs-31.a')],
                         extra_compile_args=['-std=gnu++0x',])
 
-class CustomInstall(install):
+def shell_scripts(cls):
+    orig_run = cls.run
     def run(self):
         subprocess.call(['bash', 'setup.sh', '--download'])
         subprocess.call(['bash', 'setup.sh', '--build'])
         subprocess.call(['bash', 'setup.sh', '--install'])
-        install.run(self)
+        orig_run(self)
+
+    cls.run = run
+    return cls
+
+@shell_scripts
+class CustomInstall(install):
+    pass
+
+@shell_scripts
+class CustomDevelop(develop):
+    pass
+
+@shell_scripts
+class CustomTest(test):
+    pass
 
 setup(name='py-js',
-      cmdclass={'install': CustomInstall},
+      cmdclass={
+          'install': CustomInstall,
+          'develop': CustomDevelop,
+          'test': CustomTest,
+      },
       version='1.0.0.dev8',
       description='Python-javascript bridge',
       url="https://github.com/new-mind/pyjs",
