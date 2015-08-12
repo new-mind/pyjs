@@ -64,6 +64,9 @@ class CustomInstall(install):
 class CustomDevelop(develop):
     pass
 
+def read(fname):
+    return open(os.path.join(os.path.dirname(__file__), fname)).read()
+
 setup(name='py-js',
       cmdclass={
           'install': CustomInstall,
@@ -71,6 +74,7 @@ setup(name='py-js',
       },
       version='1.0.0.dev10',
       description='Python-javascript bridge',
+      long_description=read('README.rst'),
       url="https://github.com/new-mind/pyjs",
       author='jiojiajiu',
       author_email='jiojiajiu@gmail.com',
