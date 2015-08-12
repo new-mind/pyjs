@@ -1,5 +1,5 @@
-[![Build Status](https://travis-ci.org/new-mind/pyjs.svg?branch=master)](https://travis-ci.org/new-mind/pyjs)
 Python bridge for javascript on base SpiderMonkey (mozjs-31.2.0)
+[![Build Status](https://travis-ci.org/new-mind/pyjs.svg?branch=master)](https://travis-ci.org/new-mind/pyjs)
 
 **Support yet only static linking**
 
@@ -25,16 +25,23 @@ cx.eval('var a = 1')
 
 ##Mozjs (installing)
 
-For compiling mozjs needed 2.7.3 < python < 3
+For compiling mozjs needed 2.7.3 < python < 3 (`MOZJS_PYTHON` env variable)
 
-* ./setup.sh --download
-* PYTHON=pythonExc ./setup.sh --build, pythonExc - name of python executable
-* ./setup.sh --install
+* `./setup.sh --download`
+* `PYTHON=pythonExc ./setup.sh --build`, `pythonExc` - name of python executable
+* `./setup.sh --install`
 
 ##Mozjs (local)
 
-* MOZJS_INCLUDE_DIRS - path to jsapi headers
-* MOZJS_LIB_DIRS - path to libmozjs-31
+* `MOZJS_INCLUDE_DIRS` - path to jsapi headers
+* `MOZJS_LIB_DIRS` - path to libmozjs-31
+* `MOZJS_PYTHON` - 2.7.3 < python < 3, default=`python2.7.5`
+
+### Depencencies
+
+* 2.7.3 < python < 3 - for mozjs
+* CC = clang
+* CXX = clang++
 
 #Testing
 

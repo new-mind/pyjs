@@ -21,6 +21,9 @@ function build () {
     echo ">> Configure"
     cd $TEMP/js/js/src/
     ./configure --prefix=$INSTALL_PATH
+    if [ $? -ne 0 ]; then
+        exit 1;
+    fi
 
     # related issues
     # https://bugzilla.mozilla.org/show_bug.cgi?id=1006275

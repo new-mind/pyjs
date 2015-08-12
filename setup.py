@@ -18,6 +18,9 @@ def parse_path_environ(key):
 
 MOZJS_INCLUDE_DIRS = parse_path_environ('MOZJS_INCLUDE_DIRS')
 MOZJS_LIB_DIRS = parse_path_environ('MOZJS_LIB_DIRS')
+MOZJS_PYTHON = os.environ.get('MOZJS_PYTHON', 'python2.7.5')
+MOZJS_PYTHON = subprocess.check_output(['which', MOZJS_PYTHON])
+SHELL = os.environ.get('SHELL')
 
 MOZJS = 'temp/build'
 INCLUDE_DIRS = MOZJS_INCLUDE_DIRS or [path.join(MOZJS, 'include/mozjs-31/')]
@@ -43,9 +46,11 @@ ext = Extension('py-js', sources=find_sources(),
 def shell_scripts(cls):
     orig_run = cls.run
     def run(self):
-        subprocess.call(['bash', 'setup.sh', '--download'])
-        subprocess.call(['bash', 'setup.sh', '--build'])
-        subprocess.call(['bash', 'setup.sh', '--install'])
+        subprocess.check_call(['bash', 'setup.sh', '--download'])
+        resp = subprocess.Popen(['bash', 'setup.sh', '--build'], env={'PYTHON': MOZJS_PYTHON, 'SHELL': SHELL}).wait()
+        if resp != 0:
+            raise Exception("There is an exception in --build step")
+        subprocess.check_call(['bash', 'setup.sh', '--install'])
         orig_run(self)
 
     cls.run = run
@@ -59,17 +64,12 @@ class CustomInstall(install):
 class CustomDevelop(develop):
     pass
 
-@shell_scripts
-class CustomTest(test):
-    pass
-
 setup(name='py-js',
       cmdclass={
           'install': CustomInstall,
           'develop': CustomDevelop,
-          'test': CustomTest,
       },
-      version='1.0.0.dev8',
+      version='1.0.0.dev9',
       description='Python-javascript bridge',
       url="https://github.com/new-mind/pyjs",
       author='jiojiajiu',
