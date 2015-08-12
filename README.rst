@@ -16,6 +16,7 @@ Usage
 
 Installing
 ==========
+Notice: Now compiling py-js spend much time (above 10minute) cause mozjs is compiling on one core, relax and take coffee
 
 From PIP
 --------
