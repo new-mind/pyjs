@@ -45,14 +45,10 @@ class CustomInstall(install):
         subprocess.call(['bash', 'setup.sh', '--install'])
         install.run(self)
 
-def read(fname):
-    return open(os.path.join(os.path.dirname(__file__), fname)).read()
-
 setup(name='py-js',
       cmdclass={'install': CustomInstall},
-      version='1.0.0.dev3',
+      version='1.0.0.dev8',
       description='Python-javascript bridge',
-      long_description = read('README.rst'),
       url="https://github.com/new-mind/pyjs",
       author='jiojiajiu',
       author_email='jiojiajiu@gmail.com',
