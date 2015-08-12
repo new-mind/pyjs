@@ -4,9 +4,5 @@ language:
 python:
     - "2.7"
 compiler: clang
-before_install:
-    - bash setup.sh --download
-    - bash setup.sh --build
-    - bash setup.sh --install
 script:
     - python setup.py test
