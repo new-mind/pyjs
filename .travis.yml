@@ -1,8 +1,5 @@
 language:
-    - cpp
-compiler: clang
-env:
-    - MOZJS_PYTHON=python2.7
+    - python
 before_install:
     - bash setup.sh --download
     - bash setup.sh --build
