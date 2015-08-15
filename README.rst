@@ -53,6 +53,18 @@ Depencencies
 -  CC = clang
 -  CXX = clang++
 
+Troubleshooting
+--------------
+
+- 
+
+    | $ pip install py-js
+    | Downloading/unpacking py-js
+    | Could not find a version that satisfies the requirement py-js (from versions: 1.0.0a1)
+
+  pip install py-js --pre
+
+
 Testing
 =======
 
