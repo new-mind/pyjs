@@ -44,7 +44,7 @@ Mozjs (local)
 
 -  ``MOZJS_INCLUDE_DIRS`` - path to jsapi headers
 -  ``MOZJS_LIB_DIRS`` - path to libmozjs-31
--  ``MOZJS_PYTHON`` - 2.7.3 < python < 3, default=\ ``python2.7.5``
+-  ``MOZJS_PYTHON`` - 2.7.3 < python < 3, default=\ ``python2.7``
 
 Depencencies
 ~~~~~~~~~~~~
