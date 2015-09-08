@@ -16,7 +16,7 @@ def parse_path_environ(key):
 
 MOZJS_INCLUDE_DIRS = parse_path_environ('MOZJS_INCLUDE_DIRS')
 MOZJS_LIB_DIRS = parse_path_environ('MOZJS_LIB_DIRS')
-MOZJS_PYTHON = os.environ.get('MOZJS_PYTHON', 'python2.7.5')
+MOZJS_PYTHON = os.environ.get('MOZJS_PYTHON', 'python2.7')
 MOZJS_PYTHON = subprocess.check_output(['which', MOZJS_PYTHON])
 SHELL = os.environ.get('SHELL')
 
