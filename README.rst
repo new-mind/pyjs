@@ -68,6 +68,12 @@ Troubleshooting
 
   pip install py-js --pre
 
+-
+    | configure: error: installation or configuration problem: C compiler cannot create executables.
+
+  need to have c++ compiler
+
+
 
 Testing
 =======
