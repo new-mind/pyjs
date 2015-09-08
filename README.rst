@@ -46,8 +46,8 @@ or
    python executable
 -  ``./setup.sh --install``
 
-Mozjs env build variables 
-~~~~~~~~~~~~~~~~~~~~~~~~~
+Mozjs ENV build variables 
+++++++++++++++++++++++++
 
 -  ``MOZJS_INCLUDE_DIRS`` - path to jsapi headers
 -  ``MOZJS_LIB_DIRS`` - path to libmozjs-31
