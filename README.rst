@@ -30,7 +30,7 @@ Dependencies
 
 Mozjs (installing)
 ~~~~~~~~~~~~~~~~~
-Notice: Compiling mozjs spend much time (above 10minute) cause mozjs is compiling on one core, relax and take coffee
+Notice: Compiling mozjs spend much time (above 10minute) cause mozjs is compiling on `one core <https://bugzilla.mozilla.org/show_bug.cgi?id=1006275>`__, relax and take coffee
 
 For compiling mozjs needed 2.7.3 < python < 3 (``MOZJS_PYTHON`` env
 variable)
