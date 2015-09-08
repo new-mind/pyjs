@@ -1,8 +1,6 @@
 Python bridge for javascript on base SpiderMonkey (mozjs-31.2.0) |Build
 Status|
 
-**Support yet only static linking**
-
 Usage
 =====
 
@@ -16,7 +14,6 @@ Usage
 
 Installing
 ==========
-Notice: Now compiling py-js spend much time (above 10minute) cause mozjs is compiling on one core, relax and take coffee
 
 From PIP
 --------
@@ -28,33 +25,42 @@ From source
 
 -  python setup.py build/install
 
+Dependencies
+------------
+
+-  2.7.3 < python < 3 - for mozjs
+
 Mozjs (installing)
-------------------
+~~~~~~~~~~~~~~~~~
+Notice: Compiling mozjs spend much time (above 10minute) cause mozjs is compiling on one core, relax and take coffee
 
 For compiling mozjs needed 2.7.3 < python < 3 (``MOZJS_PYTHON`` env
 variable)
+
+-  ``python setup.py build_ext --mozjs``, for make all the steps below
+
+or
 
 -  ``./setup.sh --download``
 -  ``PYTHON=pythonExc ./setup.sh --build``, ``pythonExc`` - name of
    python executable
 -  ``./setup.sh --install``
 
-Mozjs (local)
--------------
+Mozjs env build variables 
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 -  ``MOZJS_INCLUDE_DIRS`` - path to jsapi headers
 -  ``MOZJS_LIB_DIRS`` - path to libmozjs-31
 -  ``MOZJS_PYTHON`` - 2.7.3 < python < 3, default=\ ``python2.7``
 
-Depencencies
-~~~~~~~~~~~~
+Static linking
+--------------
+For compile py-js extension with static linking use command
 
--  2.7.3 < python < 3 - for mozjs
--  CC = clang
--  CXX = clang++
+``python setup.py build_ext --static``
 
 Troubleshooting
---------------
+---------------
 
 - 
 
