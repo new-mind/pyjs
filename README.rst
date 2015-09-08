@@ -15,15 +15,13 @@ Usage
 Installing
 ==========
 
-From PIP
---------
+-  python install --global-opition="build_ext --mozjs" py-js
 
--  python install py-js
+Options (build_ext)
+-------------------
+- ``--mozjs`` - download, build and install mozjs, see below
+- ``--static`` - compile extension with static linking, see below
 
-From source
------------
-
--  python setup.py build/install
 
 Dependencies
 ------------
