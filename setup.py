@@ -7,6 +7,7 @@ from setuptools.command.develop import develop
 from setuptools.command.build_ext import build_ext
 from setuptools.command.test import test
 import subprocess
+from copy import deepcopy
 
 def parse_path_environ(key):
     env = os.environ.get(key)
@@ -62,7 +63,10 @@ class CustomBuildExt(build_ext):
 
     def run_mozjs(self):
         subprocess.check_call(['bash', 'setup.sh', '--download'])
-        resp = subprocess.Popen(['bash', 'setup.sh', '--build']).wait()
+
+        env = deepcopy(os.environ)
+        env['PYTHON'] = MOZJS_PYTHON
+        resp = subprocess.Popen(['bash', 'setup.sh', '--build'], env=env).wait()
         if resp != 0:
             raise Exception("There is an exception in --build step")
         subprocess.check_call(['bash', 'setup.sh', '--install'])
