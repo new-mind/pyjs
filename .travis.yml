@@ -1,9 +1,6 @@
 # vim: ts=2 sw=2
 language: cpp
-sudo: true
 before_install:
-  - bash setup.sh --download
-  - bash setup.sh --build
   - python setup.py build_ext --mozjs
 script:
   - python setup.py test

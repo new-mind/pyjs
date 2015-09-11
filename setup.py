@@ -18,7 +18,6 @@ MOZJS_INCLUDE_DIRS = parse_path_environ('MOZJS_INCLUDE_DIRS')
 MOZJS_LIB_DIRS = parse_path_environ('MOZJS_LIB_DIRS')
 MOZJS_PYTHON = os.environ.get('MOZJS_PYTHON', 'python2.7')
 MOZJS_PYTHON = subprocess.check_output(['which', MOZJS_PYTHON])
-SHELL = os.environ.get('SHELL')
 
 MOZJS = 'temp/build'
 INCLUDE_DIRS = MOZJS_INCLUDE_DIRS or [path.join(MOZJS, 'include/mozjs-31/')]
@@ -63,7 +62,7 @@ class CustomBuildExt(build_ext):
 
     def run_mozjs(self):
         subprocess.check_call(['bash', 'setup.sh', '--download'])
-        resp = subprocess.Popen(['bash', 'setup.sh', '--build'], env={'PYTHON': MOZJS_PYTHON, 'SHELL': SHELL}).wait()
+        resp = subprocess.Popen(['bash', 'setup.sh', '--build'], env={'PYTHON': MOZJS_PYTHON}).wait()
         if resp != 0:
             raise Exception("There is an exception in --build step")
         subprocess.check_call(['bash', 'setup.sh', '--install'])
