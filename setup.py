@@ -62,7 +62,7 @@ class CustomBuildExt(build_ext):
 
     def run_mozjs(self):
         subprocess.check_call(['bash', 'setup.sh', '--download'])
-        resp = subprocess.Popen(['bash', 'setup.sh', '--build'], env={'PYTHON': MOZJS_PYTHON}).wait()
+        resp = subprocess.Popen(['bash', 'setup.sh', '--build']).wait()
         if resp != 0:
             raise Exception("There is an exception in --build step")
         subprocess.check_call(['bash', 'setup.sh', '--install'])
