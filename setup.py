@@ -49,9 +49,7 @@ class CustomBuildExt(build_ext):
         self.pyjs_ext.languages = 'c++'
         self.pyjs_ext.library_dirs = LIB_DIRS
         self.pyjs_ext.include_dirs = INCLUDE_DIRS
-#TODO:
         self.pyjs_ext.libraries = ['z', 'm', 'dl']
-        self.pyjs_ext.extra_compile_args = ['-std=gnu++0x']
         if self.static:
             self.pyjs_ext.extra_objects = [path.join(MOZJS, 'lib/libmozjs-31.a')]
 
@@ -59,6 +57,8 @@ class CustomBuildExt(build_ext):
         if self.mozjs:
             self.run_mozjs()
 
+        js_config = JSConfig(MOZJS)
+        self.pyjs_ext.extra_compile_args = js_config.get_cflags()
         build_ext.run(self)
 
     def run_mozjs(self):
@@ -74,6 +74,17 @@ class CustomBuildExt(build_ext):
 def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
+class JSConfig(object):
+#TODO:
+# search global
+    def __init__(self, dirname):
+        self.f = path.join(dirname, 'bin/js-config')
+        if not path.exists(self.f):
+            raise Exception("Should js-config path exists")
+
+    def get_cflags(self):
+        return subprocess.check_output([self.f, '--cflags']).split()
+
 setup(name='py-js',
       cmdclass={
           'build_ext': CustomBuildExt
@@ -85,8 +96,6 @@ setup(name='py-js',
       author='jiojiajiu',
       author_email='jiojiajiu@gmail.com',
       license='MIT',
-#TODO:
-# extra_compile_args through ./js-config --extraflags
       ext_modules=[Extension('py-js', sources=find_sources()) ],
       test_suite="tests",
       classifiers=[
