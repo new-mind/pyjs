@@ -1,7 +1,7 @@
 # vim: ts=2 sw=2
 language: cpp
 before_install:
-  - python setup.py build_ext --mozjs
+  - python setup.py build_ext --mozjs --static
 script:
   - python setup.py test
 deploy:
