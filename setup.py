@@ -59,6 +59,7 @@ class CustomBuildExt(build_ext):
 
         js_config = JSConfig(MOZJS)
         self.pyjs_ext.extra_compile_args = js_config.get_cflags()
+        print self.pyjs_ext.extra_compile_args
         build_ext.run(self)
 
     def run_mozjs(self):
