@@ -44,7 +44,7 @@ class CustomBuildExt(build_ext):
 
     def finalize_options(self):
         build_ext.finalize_options(self)
-        self.pyjs_ext = next(ext for ext in self.extensions if ext.name == 'py-js')
+        self.pyjs_ext = next(ext for ext in self.extensions if ext.name == 'py_js')
 
         self.pyjs_ext.languages = 'c++'
         self.pyjs_ext.library_dirs = LIB_DIRS
@@ -86,7 +86,7 @@ class JSConfig(object):
     def get_cflags(self):
         return subprocess.check_output([self.f, '--cflags']).split()
 
-setup(name='py-js',
+setup(name='py_js',
       cmdclass={
           'build_ext': CustomBuildExt
       },
@@ -97,7 +97,7 @@ setup(name='py-js',
       author='jiojiajiu',
       author_email='jiojiajiu@gmail.com',
       license='MIT',
-      ext_modules=[Extension('py-js', sources=find_sources()) ],
+      ext_modules=[Extension('py_js', sources=find_sources()) ],
       test_suite="tests",
       classifiers=[
         'Development Status :: 3 - Alpha',
