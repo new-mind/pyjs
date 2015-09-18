@@ -4,10 +4,3 @@ before_install:
   - python setup.py build_ext --mozjs --static
 script:
   - python setup.py test
-deploy:
-  provider: releases
-  api_key:
-    secure: jrzn1TmQTIPP1AVLCae2k6PGI/XyBNUiXoqt2r8/pFBxgDY+v6Zb+372WMVxk9V1EQvv4rt9VDrW8GTrec/STJpf1kqYTBjiDrK8D6PKEUkKazx3BAhqKBHHAyIiyVeshWF4z29Bh6+x2tAwYhZWX6+Ctlsw65TghZrGijMkiIo=
-  file: dist/*
-  on:
-    repo: new-mind/pyjs
