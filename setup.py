@@ -90,7 +90,7 @@ setup(name='py_js',
       cmdclass={
           'build_ext': CustomBuildExt
       },
-      version='1.0.0a2',
+      version='1.0a2',
       description='Python-javascript bridge',
       long_description=read('README.rst'),
       url="https://github.com/new-mind/pyjs",
