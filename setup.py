@@ -59,7 +59,6 @@ class CustomBuildExt(build_ext):
 
         js_config = JSConfig(MOZJS)
         self.pyjs_ext.extra_compile_args = js_config.get_cflags()
-        print(self.pyjs_ext.extra_compile_args)
         build_ext.run(self)
 
     def run_mozjs(self):
@@ -90,7 +89,7 @@ setup(name='py_js',
       cmdclass={
           'build_ext': CustomBuildExt
       },
-      version='1.0a2',
+      version='1.0a3',
       description='Python-javascript bridge',
       long_description=read('README.rst'),
       url="https://github.com/new-mind/pyjs",
