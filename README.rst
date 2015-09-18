@@ -15,7 +15,7 @@ Usage
 Installing
 ==========
 
--  python install --global-opition="build_ext --mozjs" py-js
+-  ``pip install py-js --global-option="build_ext --mozjs"``
 
 Options (build_ext)
 -------------------
@@ -29,7 +29,7 @@ Dependencies
 -  2.7.3 < python < 3 - for mozjs
 
 Mozjs (installing)
-~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~
 Notice: Compiling mozjs spend much time (above 10minute) cause mozjs is compiling on `one core <https://bugzilla.mozilla.org/show_bug.cgi?id=1006275>`__, relax and take coffee
 
 For compiling mozjs needed 2.7.3 < python < 3 (``MOZJS_PYTHON`` env
@@ -44,8 +44,8 @@ or
    python executable
 -  ``./setup.sh --install``
 
-Mozjs ENV build variables 
-++++++++++++++++++++++++
+Mozjs ENV build variables
++++++++++++++++++++++++++
 
 -  ``MOZJS_INCLUDE_DIRS`` - path to jsapi headers
 -  ``MOZJS_LIB_DIRS`` - path to libmozjs-31
@@ -60,7 +60,7 @@ For compile py-js extension with static linking use command
 Troubleshooting
 ---------------
 
-- 
+-
 
     | $ pip install py-js
     | Downloading/unpacking py-js
