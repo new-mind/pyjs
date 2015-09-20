@@ -1,5 +1,6 @@
-Python bridge for javascript on base SpiderMonkey (mozjs-31.2.0) |Build
-Status|
+|Build Status|
+
+Python bridge for javascript on base SpiderMonkey
 
 `Installing <INSTALL.rst>`__
 ============================
