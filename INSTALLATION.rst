@@ -16,6 +16,28 @@ Getting
 Building
 --------
 * ``cd js/js/src``
+* ``autoconf``
 * ``./configure``
 * ``make -j1 && make install``
   (``make -j1`` is `important <https://bugzilla.mozilla.org/show_bug.cgi?id=1006275>`__)
+
+Dependencies
+------------
+* autoconf >= 2.13
+* 2.7.3 < python < 3
+
+Second step
+===========
+| Now you can install the bridge
+
+* ``pip install py-js``
+
+Troubleshooting
+---------------
+-
+
+    | $ pip install py-js
+    | Downloading/unpacking py-js
+    | Could not find a version that satisfies the requirement py-js (from versions: 1.0.0a1)
+
+  ``pip install py-js --pre``
