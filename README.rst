@@ -2,6 +2,8 @@
 
 Python bridge for javascript on base SpiderMonkey
 
+At this moment library does not support converting python variables to javascript variables and back. Use ``json.dumps`` and ``JSON.parse`` to communicate each other.
+
 `Installing <INSTALL.rst>`__
 ============================
 
