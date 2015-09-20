@@ -2,27 +2,7 @@
 import os
 from os import path
 from setuptools import setup, Extension
-from setuptools.command.install import install
-from setuptools.command.develop import develop
-from setuptools.command.build_ext import build_ext
-from setuptools.command.test import test
 import subprocess
-from copy import deepcopy
-
-def parse_path_environ(key):
-    env = os.environ.get(key)
-    if not env:
-        return None
-    return env.split(':')
-
-MOZJS_INCLUDE_DIRS = parse_path_environ('MOZJS_INCLUDE_DIRS')
-MOZJS_LIB_DIRS = parse_path_environ('MOZJS_LIB_DIRS')
-MOZJS_PYTHON = os.environ.get('MOZJS_PYTHON', 'python2.7')
-MOZJS_PYTHON = subprocess.check_output(['which', MOZJS_PYTHON])
-
-MOZJS = 'temp/build'
-INCLUDE_DIRS = MOZJS_INCLUDE_DIRS or [path.join(MOZJS, 'include/mozjs-31/')]
-LIB_DIRS = MOZJS_LIB_DIRS or [path.join(MOZJS, 'lib'),]
 
 def find_sources():
     return [
@@ -31,72 +11,23 @@ def find_sources():
                 for f in files if f.endswith('.cpp')
     ]
 
-
-class CustomBuildExt(build_ext):
-    user_options = build_ext.user_options + [
-        ('static', None, 'create with static linking',),
-        ('mozjs', None, 'download and build mozjs'),]
-
-    def initialize_options(self):
-        self.mozjs = None
-        self.static = None
-        build_ext.initialize_options(self)
-
-    def finalize_options(self):
-        build_ext.finalize_options(self)
-        self.pyjs_ext = next(ext for ext in self.extensions if ext.name == 'py_js')
-
-        self.pyjs_ext.languages = 'c++'
-        self.pyjs_ext.library_dirs = LIB_DIRS
-        self.pyjs_ext.include_dirs = INCLUDE_DIRS
-        self.pyjs_ext.libraries = ['z', 'm', 'dl']
-        if self.static:
-            self.pyjs_ext.extra_objects = [path.join(MOZJS, 'lib/libmozjs-31.a')]
-
-    def run(self):
-        if self.mozjs:
-            self.run_mozjs()
-
-        js_config = JSConfig(MOZJS)
-        self.pyjs_ext.extra_compile_args = js_config.get_cflags()
-        build_ext.run(self)
-
-    def run_mozjs(self):
-        subprocess.check_call(['bash', 'setup.sh', '--download'])
-
-        env = deepcopy(os.environ)
-        env['PYTHON'] = MOZJS_PYTHON
-        resp = subprocess.Popen(['bash', 'setup.sh', '--build'], env=env).wait()
-        if resp != 0:
-            raise Exception("There is an exception in --build step")
-        subprocess.check_call(['bash', 'setup.sh', '--install'])
-
-def read(fname):
-    return open(os.path.join(os.path.dirname(__file__), fname)).read()
-
 class JSConfig(object):
-#TODO:
-# search global
-    def __init__(self, dirname):
-        self.f = path.join(dirname, 'bin/js-config')
-        if not path.exists(self.f):
-            raise Exception("Should js-config path exists")
-
     def get_cflags(self):
-        return subprocess.check_output([self.f, '--cflags']).split()
+        return subprocess.check_output(['js-config', '--cflags']).split()
+
+js_config = JSConfig()
+pyjs = Extension('py_js', sources=find_sources(),
+        languages = 'c++',
+        extra_compile_args = js_config.get_cflags())
 
 setup(name='py_js',
-      cmdclass={
-          'build_ext': CustomBuildExt
-      },
-      version='1.0a3',
+      version='1.0.1dev1',
       description='Python-javascript bridge',
-      long_description=read('README.rst'),
       url="https://github.com/new-mind/pyjs",
       author='jiojiajiu',
       author_email='jiojiajiu@gmail.com',
       license='MIT',
-      ext_modules=[Extension('py_js', sources=find_sources()) ],
+      ext_modules=[pyjs],
       test_suite="tests",
       classifiers=[
         'Development Status :: 3 - Alpha',
@@ -105,6 +36,7 @@ setup(name='py_js',
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.6',
-        'Programming Language :: Python :: 2.7'
+        'Programming Language :: Python :: 3.3',
+        'Programming Language :: JavaScript'
       ],
       keywords='javascript development spidermonkey')
