@@ -1,6 +1,6 @@
 Notice
 ========
-If you have any undescribed troubleshooting during installation please describe it `here <https://github.com/new-mind/pyjs/issues>`__ and I will post solution ASAP
+If you have any undescribed troubleshooting during installation please describe it `here <https://github.com/new-mind/pyjs/issues/new>`__ and I will post solution ASAP
 
 First step
 ==========
