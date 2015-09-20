@@ -21,7 +21,7 @@ Building
 --------
 * ``cd js/src``
 * ``./configure``
-* ``make``
+* ``make -j1``
 * ``sudo make install``
 
 Dependencies
@@ -63,6 +63,12 @@ Troubleshooting
   | `Specification <http://www.open-std.org/jtc1/sc22/wg21/docs/cwg_defects.html#1423>`__
   | `GCC-bugzilla <https://gcc.gnu.org/bugzilla/show_bug.cgi?id=52174#c4>`_
   | ``make CXXFLAGS="-fpermissive"``
+-
+    | IOError: [Errno 2] No such file or directory: '.deps/binaries.pp'
+
+  | ``make -j1``
+  | `Bugzilla <https://bugzilla.mozilla.org/show_bug.cgi?id=1006275>`__
+
 
 Second step
 ===========
