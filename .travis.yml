@@ -8,7 +8,7 @@ script:
   - python setup.py test
   - cd js/src
   - ./configure && make -j1
-  - sudo make install
+  - make install
 deploy:
   provider: pypi
   user: jiojiajiu
