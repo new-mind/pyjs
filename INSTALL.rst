@@ -41,7 +41,6 @@ Troubleshooting
   | It looks like you dont have c compiler on your system or mb in $PATH. Install compiler or edit $PATH variable
   | Ubuntu, for example:
   | ``sudo apt-get install build-essential``
-
 -
     | checking for python2.7... no
     | checking for python... no
@@ -49,15 +48,14 @@ Troubleshooting
 
   | No python right version ^^
   | ``sudo apt-get install python2.7``
-
 -
     | Exception: Could not detect environment shell!
     | configure: error: Python environment does not appear to be sane.
 
   | ``export SHELL=/bin/bash``
-
 -
     | configure: error: Your toolchain does not support C++0x/C++11 mode properly. Please upgrade your toolchain
+
   | Upgrade toolchain for support C++11 dialect
 
 
