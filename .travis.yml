@@ -1,6 +1,19 @@
 # vim: ts=2 sw=2
 language: cpp
 before_install:
-  - python setup.py build_ext --mozjs --static
+  - wget https://people.mozilla.org/~sstangl/mozjs-31.2.0.rc0.tar.bz2
+  - tar xvf mozjs-31.2.0.rc0.tar.bz2
+  - cd mozjs-31.2.0
 script:
   - python setup.py test
+  - cd js/src
+  - ./configure && make -j1
+  - sudo make install
+deploy:
+  provider: pypi
+  user: jiojiajiu
+  password:
+    secure: bT3FgmffHFMmWjSQ2EGln5hvKOtWU3jviJbN4e6ApGBIagmRsGgp7cFguhJUzYxuwptIScYymMtIgN8B5cucvADHNYKVJ/3yIPf0Fpv7TUlSHoybnVnc2gMLtTSsOikZuSzeXkhva16eKHN80UjV7jSiaB0hPtL4J5T7OkU9XEc=
+  on:
+    tags: true
+    repo: new-mind/pyjs
