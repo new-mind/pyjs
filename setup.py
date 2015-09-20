@@ -16,8 +16,6 @@ class JSConfig(object):
         return subprocess.check_output(['js-config', '--cflags']).split()
     def get_library_dirs(self):
         return subprocess.check_output(['js-config', '--libdir']).split()
-    def get_library_dirs(self):
-        return subprocess.check_output(['js-config', '--libdir']).split()
 
 js_config = JSConfig()
 pyjs = Extension('py_js', sources=find_sources(),
