@@ -5,7 +5,7 @@ If you have any undescribed troubleshooting during installation please describe 
 First step
 ==========
 
-| For usage the bridge you should have SpiderMonkey engine v31.2 (mozjs-31.2.0 bellow)
+| For usage the bridge you should have SpiderMonkey engine v31.5 (mozjs-31.5.0 bellow)
 | Here you can find instruction for getting and building the engine
 | Also looks `Mozilla reference <https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/Build_Documentation>`__
 | Unfortunatly there is no needfull version in popular linux package managers so we will compile it from binary
@@ -13,16 +13,15 @@ First step
 Getting
 -------
 
-* ``wget https://people.mozilla.org/~sstangl/mozjs-31.2.0.rc0.tar.bz2``
-* ``tar xvf mozjs-31.2.0.rc0.tar.bz2``
-* ``cd mozjs-31.2.0``
+* ``wget https://people.mozilla.org/~sstangl/mozjs-31.5.0.tar.bz2``
+* ``tar xvf mozjs-31.5.0.tar.bz2``
+* ``cd mozjs-31.5.0``
 
 Building
 --------
 * ``cd js/src``
 * ``./configure``
-* ``make -j1``
-  (``make -j1`` is `important <https://bugzilla.mozilla.org/show_bug.cgi?id=1006275>`__)
+* ``make``
 * ``sudo make install``
 
 Dependencies

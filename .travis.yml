@@ -1,9 +1,9 @@
 # vim: ts=2 sw=2
 language: cpp
 before_install:
-  - wget https://people.mozilla.org/~sstangl/mozjs-31.2.0.rc0.tar.bz2
-  - tar xvf mozjs-31.2.0.rc0.tar.bz2
-  - cd mozjs-31.2.0
+  - wget https://people.mozilla.org/~sstangl/mozjs-31.5.0.tar.bz2
+  - tar xvf mozjs-31.5.0.tar.bz2
+  - cd mozjs-31.5.0
   - python setup.py test
   - cd js/src
   - ./configure && make -j1
