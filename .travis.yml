@@ -4,7 +4,6 @@ before_install:
   - wget https://people.mozilla.org/~sstangl/mozjs-31.5.0.tar.bz2
   - tar xvf mozjs-31.5.0.tar.bz2
   - cd mozjs-31.5.0
-  - python setup.py test
   - cd js/src
   - ./configure && make -j1
   - make install
