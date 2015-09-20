@@ -56,7 +56,13 @@ Troubleshooting
     | configure: error: Your toolchain does not support C++0x/C++11 mode properly. Please upgrade your toolchain
 
   | Upgrade toolchain for support C++11 dialect
+-
+    | error: converting to ‘bool’ from ‘std::nullptr_t’ requires direct-initialization [-fpermissive]
 
+  | Since gcc-5.0 you've got this error
+  | `Specification <http://www.open-std.org/jtc1/sc22/wg21/docs/cwg_defects.html#1423>`__
+  | `GCC-bugzilla <https://gcc.gnu.org/bugzilla/show_bug.cgi?id=52174#c4>`_
+  | ``make CXXFLAGS="-fpermissive"``
 
 Second step
 ===========
