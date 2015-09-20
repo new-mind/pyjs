@@ -76,3 +76,7 @@ Troubleshooting
     | Could not find a version that satisfies the requirement py-js (from versions: 1.0.0a1)
 
   ``pip install py-js --pre``
+-
+    | FileNotFoundError: [Errno 2] No such file or directory: 'js-config'
+
+  Should install mozjs (see above)
