@@ -1,9 +1,10 @@
 First step
 ==========
 
-For usage the bridge you should have SpiderMonkey engine v31.2 (mozjs-31.2.0 bellow)
-Here you can find instruction for getting and building the engine
-Also looks `Mozilla reference <https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/Build_Documentation>`__
+| For usage the bridge you should have SpiderMonkey engine v31.2 (mozjs-31.2.0 bellow)
+| Here you can find instruction for getting and building the engine
+| Also looks `Mozilla reference <https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/Build_Documentation>`__
+| Unfortunatly there is no needfull version in popular linux package managers so we will compile it from binary
 
 Getting
 -------
@@ -17,4 +18,4 @@ Building
 * ``cd js/js/src``
 * ``./configure``
 * ``make -j1 && make install``
-    ``make -j1`` is `important <https://bugzilla.mozilla.org/show_bug.cgi?id=1006275>`__
+  (``make -j1`` is `important <https://bugzilla.mozilla.org/show_bug.cgi?id=1006275>`__)
