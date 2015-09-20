@@ -6,7 +6,7 @@ before_install:
   - cd mozjs-31.5.0
   - cd js/src
   - ./configure && make -j1
-  - make install
+  - sudo make install
 script:
   - python setup.py test
 deploy:
