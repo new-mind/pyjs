@@ -17,13 +17,26 @@ Building
 --------
 * ``cd js/src``
 * ``./configure``
-* ``make -j1 && make install``
+* ``make -j1``
   (``make -j1`` is `important <https://bugzilla.mozilla.org/show_bug.cgi?id=1006275>`__)
+* ``sudo make install``
 
 Dependencies
 ------------
 * autoconf >= 2.13
 * 2.7.3 < python < 3
+
+Troubleshooting
+---------------
+-
+
+    | checking for gcc... no
+    | checking for cc... no
+    | configure: error: no acceptable cc found in $PATH
+
+  | It looks like you dont have c compiler on your system or mb in $PATH. Install compiler or edit $PATH variable
+  | Ubuntu, for example:
+  | ``sudo apt-get install build-essential``
 
 Second step
 ===========
