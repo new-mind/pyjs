@@ -14,10 +14,16 @@ def find_sources():
 class JSConfig(object):
     def get_cflags(self):
         return subprocess.check_output(['js-config', '--cflags']).split()
+    def get_library_dirs(self):
+        return subprocess.check_output(['js-config', '--libdir']).split()
+    def get_library_dirs(self):
+        return subprocess.check_output(['js-config', '--libdir']).split()
 
 js_config = JSConfig()
 pyjs = Extension('py_js', sources=find_sources(),
         language = 'c++',
+        library_dirs = js_config.get_library_dirs(),
+        libraries = ['mozjs-31', 'm', 'dl'],
         extra_compile_args = js_config.get_cflags())
 
 setup(name='py_js',
