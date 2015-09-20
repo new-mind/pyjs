@@ -17,11 +17,11 @@ class JSConfig(object):
 
 js_config = JSConfig()
 pyjs = Extension('py_js', sources=find_sources(),
-        languages = 'c++',
+        language = 'c++',
         extra_compile_args = js_config.get_cflags())
 
 setup(name='py_js',
-      version='1.0.1dev1',
+      version='1.0.1.dev1',
       description='Python-javascript bridge',
       url="https://github.com/new-mind/pyjs",
       author='jiojiajiu',
