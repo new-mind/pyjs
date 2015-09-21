@@ -39,7 +39,7 @@ function install () {
     echo ">> Install"
     cd $TEMP/js/js/src
     make install
-    export PATH=$INSTALL_PATH:$PATH
+    export PATH=$INSTALL_PATH/bin:$PATH
     cd $CWD
 }
 
