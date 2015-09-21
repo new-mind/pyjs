@@ -4,13 +4,21 @@
 #include "Context.h"
 #include "Runtime.h"
 
+static bool jsInited = false;
+
 PyJS_Runtime *
 PyJS_Runtime_new()
 {
     PyJS_Runtime *self = (PyJS_Runtime *)PyJS_RuntimeType.tp_alloc(&PyJS_RuntimeType, 0);
 
-    JS_Init();
+    if (!jsInited) {
+        LOG("[PyJS_Runtime_new] jsInited %d\n", jsInited);
+        JS_Init();
+        jsInited = true;
+    }
+
     JSRuntime *rt = JS_NewRuntime(1024 * 8 * 1024, JS_NO_HELPER_THREADS);
+    LOG("[PyJS_Runtime_new] Succesfully created\n");
     if (!rt) {
         PyErr_SetString(PyExc_RuntimeError, "Cannot create javascript runtime");
         PyJS_RuntimeType.tp_free((PyObject *)self);

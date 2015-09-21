@@ -18,12 +18,15 @@ static JSClass global_class = {
 PyObject *
 PyJS_Context_eval(PyJS_Context *cx, const char *code)
 {
+    JSAutoRequest ar(cx->cx);
     RootedObject global(cx->cx, JS_NewGlobalObject(cx->cx, &global_class, nullptr, DontFireOnNewGlobalHook));
     RootedValue rval(cx->cx);
 
     {
         JSAutoCompartment ac(cx->cx, global);
         OwningCompileOptions opts(cx->cx);
+        opts.setVersion(JSVERSION_1_8);
+        opts.setSelfHostingMode(true);
         JS_InitStandardClasses(cx->cx, global);
         Evaluate(cx->cx, global, opts, code, strlen(code), &rval);
     }

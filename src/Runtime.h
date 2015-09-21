@@ -4,6 +4,7 @@
 #include <Python.h>
 #include <jsapi.h>
 #include "structmember.h"
+#include "utils/macros.h"
 
 typedef struct {
     PyObject_HEAD

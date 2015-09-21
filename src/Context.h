@@ -5,6 +5,7 @@
 #include <Python.h>
 
 #include "Runtime.h"
+#include "utils/macros.h"
 
 typedef struct {
     PyObject_HEAD
