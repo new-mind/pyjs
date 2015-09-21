@@ -30,6 +30,7 @@ Thanks
 
 -  Paul J. Davis
    (`python-spidermonkey <https://pypi.python.org/pypi/python-spidermonkey>`__)
+-  Flier Lu (`pyv8 <https://code.google.com/p/pyv8/>`__)
 
 .. |Build Status| image:: https://travis-ci.org/new-mind/pyjs.svg?branch=master
    :target: https://travis-ci.org/new-mind/pyjs
