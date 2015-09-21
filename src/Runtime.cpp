@@ -11,8 +11,8 @@ PyJS_Runtime_new()
 {
     PyJS_Runtime *self = (PyJS_Runtime *)PyJS_RuntimeType.tp_alloc(&PyJS_RuntimeType, 0);
 
+    LOG("[PyJS_Runtime_new] jsInited %d\n", jsInited);
     if (!jsInited) {
-        LOG("[PyJS_Runtime_new] jsInited %d\n", jsInited);
         JS_Init();
         jsInited = true;
     }

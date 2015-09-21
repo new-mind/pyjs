@@ -9,6 +9,7 @@
 
 typedef struct {
     PyObject_HEAD
+    JSObject *global;
     JSContext *cx;
 } PyJS_Context;
 

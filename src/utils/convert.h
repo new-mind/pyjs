@@ -4,6 +4,8 @@
 #include <jsapi.h>
 #include <Python.h>
 
+#include "macros.h"
+
 PyObject *convert(JSContext *cx, JS::RootedValue *val);
 
 #endif
