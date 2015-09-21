@@ -20,7 +20,7 @@ function extract () {
 function build () {
     echo ">> Configure"
     cd $TEMP/js/js/src/
-    ./configure --prefix=$INSTALL_PATH
+    ./configure --prefix=$INSTALL_PATH --enable-debug
     if [ $? -ne 0 ]; then
         exit 1;
     fi
@@ -31,7 +31,7 @@ function build () {
     #jobs=$(($jobs+1))
     #make -j$jobs
     echo ">> Make"
-    make -j1 --enable-debug
+    make -j1
     cd $CWD
 }
 
