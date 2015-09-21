@@ -7,6 +7,7 @@ before_install:
   - cd js/src
   - ./configure && make -j1
   - sudo make install
+  - cd ../..
 script:
   - python setup.py test
 deploy:
