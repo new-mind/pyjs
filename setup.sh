@@ -39,7 +39,6 @@ function install () {
     echo ">> Install"
     cd $TEMP/js/js/src
     make install
-    cp -v dist/include/js-config.h $INSTALL_PATH/include/mozjs-31/
     export PATH=$INSTALL_PATH:$PATH
     cd $CWD
 }
