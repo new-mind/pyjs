@@ -1,5 +1,5 @@
 # Script for download, building and installing mozjs
-URL=https://people.mozilla.org/~sstangl/mozjs-31.2.0.rc0.tar.bz2
+URL=https://people.mozilla.org/~sstangl/mozjs-31.5.0.tar.bz2
 TEMP=temp
 CWD=`pwd`
 INSTALL_PATH=$CWD/$TEMP/build
@@ -31,7 +31,7 @@ function build () {
     #jobs=$(($jobs+1))
     #make -j$jobs
     echo ">> Make"
-    make -j1
+    make -j1 --enable-debug
     cd $CWD
 }
 
@@ -40,6 +40,7 @@ function install () {
     cd $TEMP/js/js/src
     make install
     cp -v dist/include/js-config.h $INSTALL_PATH/include/mozjs-31/
+    export PATH=$INSTALL_PATH:$PATH
     cd $CWD
 }
 
