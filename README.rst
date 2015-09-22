@@ -7,6 +7,8 @@ At this moment library does not support converting python variables to javascrip
 `Installing <INSTALL.rst>`__
 ============================
 
+`API <http://docs.pyjs.apiary.io/>`__
+=====================================
 
 Usage
 =====
@@ -17,6 +19,15 @@ Usage
 
     cx = pyjs.Context()
     cx.eval('var a = 1')
+
+.. code:: python
+
+    import pyjs
+
+    cx = pyjs.Context()
+    cx.setGlobal("intVar", 1)
+    cx.setGlobal("object", {'type': 'someGlobalObject'})
+    cx.eval('intVar * 2')
 
 
 Testing
