@@ -31,6 +31,7 @@ setup(name='py_js',
       author='jiojiajiu',
       author_email='jiojiajiu@gmail.com',
       license='MIT',
+      py_modules=['pyjs'],
       ext_modules=[pyjs],
       test_suite="tests",
       classifiers=[

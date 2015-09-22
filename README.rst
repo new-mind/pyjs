@@ -13,10 +13,9 @@ Usage
 
 .. code:: python
 
-    import py_js as pyjs
+    import pyjs
 
-    rt = pyjs.Runtime()
-    cx = rt.Context()
+    cx = pyjs.Context()
     cx.eval('var a = 1')
 
 
