@@ -2,7 +2,7 @@
 URL=https://people.mozilla.org/~sstangl/mozjs-31.5.0.tar.bz2
 TEMP=temp
 CWD=`pwd`
-INSTALL_PATH=$CWD/$TEMP/build
+INSTALL_PATH=`pwd $CWD/$TEMP/build`
 
 function download () {
     echo ">> Download"
