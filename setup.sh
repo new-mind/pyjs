@@ -40,7 +40,6 @@ function install () {
     echo ">> Install"
     cd $TEMP/js/js/src
     make install
-    export PATH=$INSTALL_PATH/bin:$PATH
     cd $CWD
 }
 
@@ -57,6 +56,10 @@ for i in $@; do
         --download)
             download
             extract js
+            exit 0
+            ;;
+        --path)
+            echo $INSTALL_PATH/bin:$PATH
             exit 0
             ;;
         *)
