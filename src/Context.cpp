@@ -30,6 +30,7 @@ PyJS_Context_eval(PyJS_Context *cx, const char *code)
     LOG("[PyJS_Context_eval] get global %p\n", cx->global);
     RootedObject global(cx->cx, cx->global);
 
+    LOG("[PyJS_Context_eval] create compartment\n");
     JSAutoCompartment ac(cx->cx, global);
     OwningCompileOptions opts(cx->cx);
     opts.setVersion(JSVERSION_1_8);

@@ -3,7 +3,6 @@
 
 PyObject *convert(JSContext *cx, JS::RootedValue *val)
 {
-    PyObject *a;
     if (val->isNull()) {
         return Py_BuildValue("");
     }
@@ -13,7 +12,7 @@ PyObject *convert(JSContext *cx, JS::RootedValue *val)
     }
 
     if (val->isBoolean()) {
-        return a;
+        return val->toBoolean() ? Py_True : Py_False;
     }
 
     if (val->isInt32()) {
@@ -25,10 +24,15 @@ PyObject *convert(JSContext *cx, JS::RootedValue *val)
     }
 
     if (val->isString()) {
-        return Py_BuildValue("s", JS_EncodeString(cx, val->toString()));
+        JS_BeginRequest(cx);
+        char * str = JS_EncodeString(cx, val->toString());
+        JS_EndRequest(cx);
+
+        return Py_BuildValue("s", str);
     }
     
+    // TODO: object converting not implemented
     if (val->isObject()) {
-        return a;
+        return Py_BuildValue("s", "[Object]");
     }
 }
