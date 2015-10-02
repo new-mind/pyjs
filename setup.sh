@@ -3,7 +3,6 @@ URL=https://people.mozilla.org/~sstangl/mozjs-31.5.0.tar.bz2
 TEMP=temp
 CWD=`pwd`
 INSTALL_PATH=`realpath $CWD/$TEMP/build`
-set -x
 
 function download () {
     echo ">> Download"
