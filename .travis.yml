@@ -1,7 +1,7 @@
 # vim: ts=2 sw=2
 language: python
 before_install:
-  - ./setup.sh --travis
+  - bash setup.sh --travis
   - export PATH=$PATH:`./setup.sh --path`/bin
 cache:
   directories:
