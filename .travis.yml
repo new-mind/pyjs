@@ -1,5 +1,5 @@
 # vim: ts=2 sw=2
-language: cpp
+language: python
 before_install:
   - ./setup.sh --download
   - ./setup.sh --build
