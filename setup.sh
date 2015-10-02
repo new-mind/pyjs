@@ -46,9 +46,9 @@ for i in $@; do
     case $i in
         --travis)
             if [ ! -d $INSTALL_PATH ]; then
-                ./setup.sh --download
-                ./setup.sh --build
-                ./setup.sh --install
+                bash setup.sh --download
+                bash setup.sh --build
+                bash setup.sh --install
             fi
             exit 0
             ;;
