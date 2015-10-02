@@ -4,7 +4,10 @@ before_install:
   - ./setup.sh --download
   - ./setup.sh --build
   - ./setup.sh --install
-  - export PATH=`./setup.sh --path`
+  - export PATH=$PATH:`./setup.sh --path`/bin
+cache:
+  directories:
+    - `./setup.sh --path`
 script:
   - python setup.py test
 deploy:

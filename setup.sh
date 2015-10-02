@@ -59,7 +59,7 @@ for i in $@; do
             exit 0
             ;;
         --path)
-            echo $PATH:$INSTALL_PATH/bin
+            echo $INSTALL_PATH
             exit 0
             ;;
         *)
