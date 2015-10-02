@@ -7,7 +7,7 @@ before_install:
   - export PATH=$PATH:`./setup.sh --path`/bin
 cache:
   directories:
-    - `./setup.sh --path`
+    - bash setup.sh --path
 script:
   - python setup.py test
 deploy:
