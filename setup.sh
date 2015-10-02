@@ -51,6 +51,7 @@ for i in $@; do
                 ./setup.sh --install
             fi
             exit 0
+            ;;
         --install)
             install
             exit 0
